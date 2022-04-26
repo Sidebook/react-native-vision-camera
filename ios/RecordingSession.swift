@@ -29,6 +29,7 @@ class RecordingSession {
   private var audioWriter: AVAssetWriterInput?
   private var bufferAdaptor: AVAssetWriterInputPixelBufferAdaptor?
   private let completionHandler: (AVAssetWriter.Status, Error?) -> Void
+  private let startHandler: () -> Void
 
   private var initialTimestamp: CMTime?
   private var latestTimestamp: CMTime?
@@ -48,8 +49,11 @@ class RecordingSession {
 
   init(url: URL,
        fileType: AVFileType,
-       completion: @escaping (AVAssetWriter.Status, Error?) -> Void) throws {
+       completion: @escaping (AVAssetWriter.Status, Error?) -> Void,
+       onStart: @escaping () -> Void
+  ) throws {
     completionHandler = completion
+    startHandler = onStart
 
     do {
       assetWriter = try AVAssetWriter(outputURL: url, fileType: fileType)
@@ -120,6 +124,7 @@ class RecordingSession {
     }
 
     initialTimestamp = CMTime(seconds: CACurrentMediaTime(), preferredTimescale: 1_000_000_000)
+    self.startHandler()
     assetWriter.startSession(atSourceTime: initialTimestamp!)
     ReactLogger.log(level: .info, message: "Started RecordingSession at \(initialTimestamp!.seconds) seconds.")
   }

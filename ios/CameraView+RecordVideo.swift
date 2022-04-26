@@ -98,11 +98,18 @@ extension CameraView: AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAud
           }
         }
       }
+        
+      let onStart = {
+        if let onRecordingStart = self.onRecordingStart {
+          onRecordingStart([:])
+        }
+      }
 
       do {
         self.recordingSession = try RecordingSession(url: tempURL,
                                                      fileType: fileType,
-                                                     completion: onFinish)
+                                                     completion: onFinish,
+                                                     onStart: onStart)
       } catch let error as NSError {
         callback.reject(error: .capture(.createRecorderError(message: nil)), cause: error)
         return
