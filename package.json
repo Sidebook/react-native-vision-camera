@@ -1,6 +1,6 @@
 {
-  "name": "react-native-vision-camera",
-  "version": "2.13.0",
+  "name": "@rwakimoto/react-native-vision-camera",
+  "version": "2.13.0+start-recording-callback",
   "description": "The Camera library that sees the vision.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
