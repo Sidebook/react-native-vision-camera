@@ -85,6 +85,7 @@ export class Camera extends React.PureComponent<CameraProps> {
     super(props);
     this.onViewReady = this.onViewReady.bind(this);
     this.onInitialized = this.onInitialized.bind(this);
+    this.onRecordingStart = this.onRecordingStart.bind(this);
     this.onError = this.onError.bind(this);
     this.onFrameProcessorPerformanceSuggestionAvailable = this.onFrameProcessorPerformanceSuggestionAvailable.bind(this);
     this.ref = React.createRef<RefType>();
@@ -415,6 +416,10 @@ export class Camera extends React.PureComponent<CameraProps> {
     this.props.onInitialized?.();
   }
 
+  private onRecordingStart(): void {
+    this.props.onRecordingStart?.();
+  }
+
   private onFrameProcessorPerformanceSuggestionAvailable(event: NativeSyntheticEvent<FrameProcessorPerformanceSuggestion>): void {
     if (this.props.onFrameProcessorPerformanceSuggestionAvailable != null)
       this.props.onFrameProcessorPerformanceSuggestionAvailable(event.nativeEvent);
@@ -480,6 +485,7 @@ export class Camera extends React.PureComponent<CameraProps> {
         ref={this.ref}
         onViewReady={this.onViewReady}
         onInitialized={this.onInitialized}
+        onRecordingStart={this.onRecordingStart}
         onError={this.onError}
         onFrameProcessorPerformanceSuggestionAvailable={this.onFrameProcessorPerformanceSuggestionAvailable}
         enableFrameProcessor={frameProcessor != null}

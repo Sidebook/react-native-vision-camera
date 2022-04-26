@@ -208,5 +208,9 @@ export interface CameraProps extends ViewProps {
    * @default 'auto'
    */
   frameProcessorFps?: number | 'auto';
+  /**
+   * Called when recording actually starts
+   */
+  onRecordingStart?: () => void;
   //#endregion
 }
