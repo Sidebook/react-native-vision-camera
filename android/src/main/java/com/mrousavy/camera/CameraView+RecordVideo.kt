@@ -51,6 +51,9 @@ fun CameraView.startRecording(options: ReadableMap, onRecordCallback: Callback) 
 
   activeVideoRecording = recording.start(ContextCompat.getMainExecutor(context), object : Consumer<VideoRecordEvent> {
     override fun accept(event: VideoRecordEvent?) {
+      if (event is VideoRecordEvent.Start) {
+        invokeOnRecordingStart()
+      }
       if (event is VideoRecordEvent.Finalize) {
         if (event.hasError()) {
           // error occured!

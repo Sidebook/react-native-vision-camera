@@ -28,6 +28,7 @@ class CameraViewManager(reactContext: ReactApplicationContext) : ViewGroupManage
       .put("cameraInitialized", MapBuilder.of("registrationName", "onInitialized"))
       .put("cameraError", MapBuilder.of("registrationName", "onError"))
       .put("cameraPerformanceSuggestionAvailable", MapBuilder.of("registrationName", "onFrameProcessorPerformanceSuggestionAvailable"))
+      .put("cameraRecordingStart", MapBuilder.of("registrationName", "onRecordingStart"))
       .build()
   }
 

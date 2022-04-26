@@ -48,6 +48,12 @@ fun CameraView.invokeOnViewReady() {
   reactContext.getJSModule(RCTEventEmitter::class.java).receiveEvent(id, "cameraViewReady", event)
 }
 
+fun CameraView.invokeOnRecordingStart() {
+  val event = Arguments.createMap()
+  val reactContext = context as ReactContext
+  reactContext.getJSModule(RCTEventEmitter::class.java).receiveEvent(id, "cameraRecordingStart", event)
+}
+
 private fun errorToMap(error: Throwable): WritableMap {
   val map = Arguments.createMap()
   map.putString("message", error.message)
