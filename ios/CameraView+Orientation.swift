@@ -50,7 +50,7 @@ extension CameraView {
           output.connections.forEach { connection in
             if connection.isVideoMirroringSupported {
               connection.automaticallyAdjustsVideoMirroring = false
-              connection.isVideoMirrored = isMirrored
+              connection.isVideoMirrored = false
             }
             connection.setInterfaceOrientation(self.outputOrientation)
           }
