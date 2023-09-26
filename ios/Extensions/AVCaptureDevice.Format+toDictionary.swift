@@ -33,7 +33,9 @@ extension AVCaptureDevice.Format {
       "minISO": minISO,
       "fieldOfView": videoFieldOfView,
       "maxZoom": videoMaxZoomFactor,
-      "colorSpaces": supportedColorSpaces.map(\.descriptor),
+      // https://github.com/mrousavy/react-native-vision-camera/issues/1840#issuecomment-1732360337
+      //
+      // "colorSpaces": supportedColorSpaces.map(\.descriptor),
       "supportsVideoHDR": isVideoHDRSupported,
       "supportsPhotoHDR": false,
       "frameRateRanges": videoSupportedFrameRateRanges.map {
